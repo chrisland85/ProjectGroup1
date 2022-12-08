@@ -1,6 +1,6 @@
 # Default tags
 variable "default_tags" {
-  default = {}
+  default     = {}
   type        = map(any)
   description = "Default tags to be appliad to all AWS resources"
 }
@@ -10,6 +10,7 @@ variable "prefix" {
   type        = string
   description = "Name prefix"
 }
+
 
 # Available Zones
 variable "aws_availability_zones" {
