@@ -178,7 +178,7 @@ resource "aws_instance" "Bastion-Host" {
   security_groups             = [aws_security_group.web_sg.id]
   associate_public_ip_address = true
  // iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
-  user_data                   = file("${path.module}/install_httpd.sh")
+  //user_data                   = file("${path.module}/install_httpd.sh")
 
   root_block_device {
     encrypted = var.env == "prod" ? true : false
