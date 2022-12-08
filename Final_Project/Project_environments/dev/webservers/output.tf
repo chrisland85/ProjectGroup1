@@ -5,5 +5,5 @@
 
 
 //output "alb_dns_name" {
- /// value = module.aws_elb.web-alb.dns_name
+// value = module.webserver-dev.aws_elb.dns_name
 //}
