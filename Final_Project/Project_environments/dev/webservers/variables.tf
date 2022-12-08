@@ -48,13 +48,6 @@ variable "path_to_web_key" {
   type        = string
 }
 
-variable "access_key" {
-  
-}
-
-variable "secret_key" {
-  
-}
 
 
 

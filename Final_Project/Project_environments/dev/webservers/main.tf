@@ -6,26 +6,16 @@
 #
 #----------------------------------------------------------
 
-#  Define the provider
-provider "aws" {
-  region = "us-east-1"
-  access_key  = var.access_key
-  secret_key  = var.secret_key
-}
-
-resource "aws_s3_bucket" "mywebpage" {
-  bucket    = "${var.env}-acs730-group1project-ookusolubo"
-  acl      = "private"
-
-}
-
-resource "aws_s3_bucket_object" "object1" {
-  for_each  = fileset("html/", "*")
-  bucket    = aws_s3_bucket.mywebpage.id
-  key       = each.value
-  source    = "html/${each.value}"
-  etag      = filemd5("html/${each.value}")
-  content_type = "text/html"
+# Module to deploy basic networking 
+module "webserver-dev" {
+  source = "../../../modules/aws_webservers"
+  # source              = "git@github.com:igeiman/aws_network.git"
+  instance_type   = var.instance_type
+  env             = var.env
+  ec2_count       = var.ec2_count
+  prefix          = var.prefix
+  default_tags    = var.default_tags
+  path_to_web_key = var.path_to_web_key
 }
 
 

@@ -30,14 +30,14 @@ variable "prefix" {
 
 # Variable to signal the current environment 
 variable "env" {
-  default     = "prod"
+  default     = "test"
   type        = string
   description = "Deployment Environment"
 }
 
 # Variable to signal the current environment 
 variable "ec2_count" {
-  default     = "3"
+  default     = "1"
   type        = number
   description = "Number of instances"
 }

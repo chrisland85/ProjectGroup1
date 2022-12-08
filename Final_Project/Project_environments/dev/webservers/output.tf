@@ -1,4 +1,4 @@
 # web public ip
-#output "web_id" {
- #   value = aws_autoscaling_group.custom-group-autoscaling.public_ips
+#output "web_ip" {
+#    value = module.webserver-dev.aws_instance.Bastion-Host.public_ip
 #}
