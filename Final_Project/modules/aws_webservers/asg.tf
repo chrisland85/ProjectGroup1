@@ -59,6 +59,7 @@ resource "aws_autoscaling_group" "custom-group-autoscaling" {
   // name                        = "custom_launch_config"
   vpc_zone_identifier       = data.terraform_remote_state.network.outputs.private_subnet_ids
   launch_configuration      = aws_launch_configuration.custom-launch-config.name
+  load_balancers            = [aws_elb.web-alb.name]
   min_size                  = 1
   desired_capacity          = var.ec2_count
   max_size                  = 4

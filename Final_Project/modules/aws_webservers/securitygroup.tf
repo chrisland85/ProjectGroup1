@@ -44,7 +44,7 @@ resource "aws_security_group" "alb-sg" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-ALB-sg"
+      "Name" = "Group1-${var.env}-ALB-sg"
     }
   )
 }
@@ -96,7 +96,7 @@ resource "aws_security_group" "web_sg" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-web-sg"
+      "Name" = "Group1-${var.env}-web-sg"
     }
   )
 }

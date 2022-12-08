@@ -32,8 +32,8 @@ resource "aws_subnet" "public_subnet" {
   count             = length(var.aws_availability_zones)
   vpc_id            = aws_vpc.main.id
   availability_zone = var.aws_availability_zones[count.index]
-  cidr_block        = "${cidrsubnet(var.vpc_cidr,6,count.index+3)}"
- // cidr_block        = var.public_cidr_blocks
+  cidr_block        = cidrsubnet(var.vpc_cidr, 6, count.index + 3)
+  // cidr_block        = var.public_cidr_blocks
 
   ##availability_zone = data.aws_availability_zones.available.names[count.index]
   tags = merge(
@@ -47,7 +47,7 @@ resource "aws_subnet" "private_subnet" {
   count             = length(var.aws_availability_zones)
   vpc_id            = aws_vpc.main.id
   availability_zone = var.aws_availability_zones[count.index]
-  cidr_block        = "${cidrsubnet(var.vpc_cidr,8,count.index)}"
+  cidr_block        = cidrsubnet(var.vpc_cidr, 8, count.index)
   ##availability_zone = data.aws_availability_zones.available.names[count.index]
   tags = merge(
     local.default_tags, {
@@ -110,10 +110,10 @@ resource "aws_route_table" "private_route_table" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_nat_gateway.nat_gateway.id
   }
-    tags = {
-      Name = "Group1-${var.env}-route-private-route_table"
-    }
+  tags = {
+    Name = "Group1-${var.env}-route-private-route_table"
   }
+}
 
 ## Associate route tables ##
 
@@ -122,7 +122,7 @@ resource "aws_route_table_association" "public_route_table_association" {
   count          = length(aws_subnet.public_subnet[*].id)
   route_table_id = aws_route_table.public_route_table.id
   subnet_id      = aws_subnet.public_subnet[count.index].id
-  
+
 }
 
 resource "aws_route_table_association" "private_route_table_association" {

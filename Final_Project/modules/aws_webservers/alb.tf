@@ -1,7 +1,7 @@
 #AWS elb configuration
 # Create a load balancer
 resource "aws_elb" "web-alb" {
-  name               = "${var.env}-ALB"
+  name               = "${var.env}-alb"
   subnets            = data.terraform_remote_state.network.outputs.public_subnet_ids
   security_groups    = [aws_security_group.alb-sg.id]
   
