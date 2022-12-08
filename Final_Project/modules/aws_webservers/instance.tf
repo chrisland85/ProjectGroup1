@@ -67,10 +67,13 @@ resource "aws_autoscaling_group" "custom-group-autoscaling" {
   force_delete              = true
   tag {
     key                 = "Name"
-    value               = "${var.env}-webserver_instance"
+    value               = "Group1-${var.env}-webserver_instance"
     propagate_at_launch = true
   }
+  
 }
+
+
 # define auto-scaling configuration policy
 resource "aws_autoscaling_policy" "custom-cpu-policy" {
   //count                       = var.ec2_count
@@ -104,7 +107,7 @@ resource "aws_cloudwatch_metric_alarm" "custom-cpu-alarm" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-cpu-alarm"
+      "Name" = "Group1-${var.env}-cpu-alarm"
     }
   )
 }
@@ -141,7 +144,7 @@ resource "aws_cloudwatch_metric_alarm" "custom-cpu-alarm-scaledown" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-cpu-alarm-scaledown"
+      "Name" = "Group1-${var.env}-cpu-alarm-scaledown"
     }
   )
 }
@@ -155,7 +158,7 @@ resource "aws_key_pair" "web_key" {
   //public_key = file("${var.prefix}.pub")
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-key"
+      "Name" = "Group1-${var.env}-key"
     }
   )
 }
@@ -186,7 +189,7 @@ resource "aws_instance" "Bastion-Host" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-Bastion_Host"
+      "Name" = "Group1-${var.env}-Bastion_Host"
     }
   )
 }
@@ -198,7 +201,7 @@ resource "aws_eip" "static_eip" {
   instance = aws_instance.Bastion-Host.id
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-eip"
+      "Name" = "Group1-${var.env}-eip"
     }
   )
 }

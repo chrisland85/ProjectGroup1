@@ -38,7 +38,7 @@ resource "aws_subnet" "public_subnet" {
   ##availability_zone = data.aws_availability_zones.available.names[count.index]
   tags = merge(
     local.default_tags, {
-      Name = "${var.env}-public-subnet-${count.index}"
+      Name = "Group1-${var.env}-public-subnet-${count.index}"
     }
   )
 }
@@ -51,7 +51,7 @@ resource "aws_subnet" "private_subnet" {
   ##availability_zone = data.aws_availability_zones.available.names[count.index]
   tags = merge(
     local.default_tags, {
-      Name = "${var.env}-private-subnet-${count.index}"
+      Name = "Group1-${var.env}-private-subnet-${count.index}"
     }
   )
 }
@@ -65,7 +65,7 @@ resource "aws_internet_gateway" "igw" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-igw"
+      "Name" = "Group1-${var.env}-igw"
     }
   )
 }
@@ -82,7 +82,7 @@ resource "aws_nat_gateway" "nat_gateway" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "${var.env}-nat_gw"
+      "Name" = "Group1-${var.env}-nat_gw"
     }
   )
 }
@@ -97,7 +97,7 @@ resource "aws_route_table" "public_route_table" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "${var.env}-route-public-route_table"
+    Name = "Group1-${var.env}-route-public-route_table"
   }
 }
 
@@ -111,7 +111,7 @@ resource "aws_route_table" "private_route_table" {
     gateway_id = aws_nat_gateway.nat_gateway.id
   }
     tags = {
-      Name = "${var.env}-route-private-route_table"
+      Name = "Group1-${var.env}-route-private-route_table"
     }
   }
 
@@ -122,6 +122,7 @@ resource "aws_route_table_association" "public_route_table_association" {
   count          = length(aws_subnet.public_subnet[*].id)
   route_table_id = aws_route_table.public_route_table.id
   subnet_id      = aws_subnet.public_subnet[count.index].id
+  
 }
 
 resource "aws_route_table_association" "private_route_table_association" {
