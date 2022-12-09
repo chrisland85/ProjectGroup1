@@ -33,9 +33,7 @@ resource "aws_subnet" "public_subnet" {
   vpc_id            = aws_vpc.main.id
   availability_zone = var.aws_availability_zones[count.index]
   cidr_block        = cidrsubnet(var.vpc_cidr, 6, count.index + 3)
-  // cidr_block        = var.public_cidr_blocks
 
-  ##availability_zone = data.aws_availability_zones.available.names[count.index]
   tags = merge(
     local.default_tags, {
       Name = "${var.grp}-${var.env}-public-subnet-${count.index}"

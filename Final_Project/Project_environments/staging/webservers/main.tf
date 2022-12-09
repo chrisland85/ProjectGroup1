@@ -1,10 +1,4 @@
 
-#----------------------------------------------------------
-# ACS730 - Project - Terraform Introduction
-#
-# Build EC2 Instances
-#
-#----------------------------------------------------------
 
 # Module to deploy webserver
 module "webserver-staging" {
@@ -16,6 +10,6 @@ module "webserver-staging" {
   prefix          = var.prefix
   default_tags    = var.default_tags
   path_to_web_key = var.path_to_web_key
-  grp            = var.grp
+  grp             = var.grp
 }
 
