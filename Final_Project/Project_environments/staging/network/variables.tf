@@ -11,7 +11,7 @@ variable "default_tags" {
 # Name prefix
 variable "prefix" {
   type        = string
-  default     = "project"
+  default     = "project1"
   description = "Name prefix"
 }
 

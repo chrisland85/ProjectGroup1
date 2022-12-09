@@ -1,4 +1,4 @@
 # load balancer dns
-output "alb_dns_name" {
+output "prod_alb_dns_name" {
  value = module.webserver-prod.alb_dns_name
 }

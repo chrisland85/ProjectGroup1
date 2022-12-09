@@ -13,7 +13,7 @@ data "aws_ami" "latest_amazon_linux" {
 data "terraform_remote_state" "network" { // This is to use Outputs from Remote State
   backend = "s3"
   config = {
-    bucket = "${var.env}-acs730-project-ookusolubo" // Bucket from where to GET Terraform State
+    bucket = "${var.env}-acs730-projectgroup-ookusolubo" // Bucket from where to GET Terraform State
     key    = "${var.env}-network/terraform.tfstate" // Object name in the bucket to GET Terraform State
     region = "us-east-1"                            // Region where bucket created
   }
@@ -33,12 +33,11 @@ locals {
 # define auto-scaling launch configuration
 resource "aws_launch_configuration" "custom-launch-config" {
   //count                       = var.ec2_count
-  name = "custom-launch-config"
+  name = "${var.env}-custom-launch-config"
   // name                        = "custom_launch_config"
   image_id                    = data.aws_ami.latest_amazon_linux.id
   instance_type               = lookup(var.instance_type, var.env)
   key_name                    = aws_key_pair.web_key.key_name
-  //subnet_id                   = element(data.terraform_remote_state.network.outputs.private_subnet_ids, count.index)
   security_groups             = [aws_security_group.web_sg.id]
   associate_public_ip_address = false
   user_data                   = file("${path.module}/install_httpd.sh")
@@ -54,7 +53,7 @@ resource "aws_launch_configuration" "custom-launch-config" {
 
 # define auto-scaling group
 resource "aws_autoscaling_group" "custom-group-autoscaling" {
-  name = "custom-group-autoscaling"
+  name = "${var.env}-custom-group-autoscaling"
   //count                       = var.ec2_count
   // name                        = "custom_launch_config"
   vpc_zone_identifier       = data.terraform_remote_state.network.outputs.private_subnet_ids
@@ -156,7 +155,6 @@ resource "aws_cloudwatch_metric_alarm" "custom-cpu-alarm-scaledown" {
 resource "aws_key_pair" "web_key" {
   key_name   = var.prefix
   public_key = file(var.path_to_web_key)
-  //public_key = file("${var.prefix}.pub")
   tags = merge(local.default_tags,
     {
       "Name" = "${var.grp}-${var.env}-key"
