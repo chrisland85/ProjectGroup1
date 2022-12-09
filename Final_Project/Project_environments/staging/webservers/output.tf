@@ -1,4 +1,4 @@
-# web public ip
-#output "web_ip" {
-#    value = module.webserver-dev.aws_instance.Bastion-Host.public_ip
-#}
+# load balancer dns
+output "alb_dns_name" {
+ value = module.webserver-staging.alb_dns_name
+}
