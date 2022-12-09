@@ -26,7 +26,6 @@ resource "aws_vpc" "main" {
   )
 }
 
-
 # Add provisioning of the public subnetin the default VPC
 resource "aws_subnet" "public_subnet" {
   count             = length(var.aws_availability_zones)
