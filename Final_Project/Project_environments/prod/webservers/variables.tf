@@ -22,7 +22,7 @@ variable "default_tags" {
 
 # Prefix to identify resources
 variable "prefix" {
-  default     = "project"
+  default     = "project2"
   type        = string
   description = "Name prefix"
 }

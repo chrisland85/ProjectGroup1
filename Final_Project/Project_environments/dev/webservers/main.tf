@@ -16,7 +16,7 @@ module "webserver-dev" {
   prefix          = var.prefix
   default_tags    = var.default_tags
   path_to_web_key = var.path_to_web_key
-  grp            = var.grp
+  grp             = var.grp
 }
 
 

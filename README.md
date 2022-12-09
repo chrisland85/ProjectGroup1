@@ -1,5 +1,5 @@
 # ProjectGroup1
-Web application that displays user information
+Web application that displays student information
 
 
 

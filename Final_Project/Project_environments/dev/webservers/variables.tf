@@ -48,6 +48,12 @@ variable "path_to_web_key" {
   type        = string
 }
 
+variable "grp" {
+  default     = "Group1"
+  type        = string
+  description = "Deployment Environment"
+}
+
 
 
 
