@@ -36,4 +36,11 @@ variable "aws_availability_zones" {
   description = "Availabilty zone"
 }
 
+# Variable to signal the current environment 
+variable "grp" {
+  default     = "Group1"
+  type        = string
+  description = "Deployment Environment"
+}
+
 

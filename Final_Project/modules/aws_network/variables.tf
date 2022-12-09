@@ -34,3 +34,10 @@ variable "env" {
   description = "Deployment Environment"
 }
 
+
+# Variable to signal the current environment 
+variable "grp" {
+  default     = "Group1"
+  type        = string
+  description = "Deployment Environment"
+}

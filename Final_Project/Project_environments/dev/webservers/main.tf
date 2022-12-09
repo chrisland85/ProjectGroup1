@@ -6,7 +6,7 @@
 #
 #----------------------------------------------------------
 
-# Module to deploy basic networking 
+# Module to deploy webserver 
 module "webserver-dev" {
   source = "../../../modules/aws_webservers"
   # source              = "git@github.com:igeiman/aws_network.git"
@@ -16,6 +16,7 @@ module "webserver-dev" {
   prefix          = var.prefix
   default_tags    = var.default_tags
   path_to_web_key = var.path_to_web_key
+  grp            = var.grp
 }
 
 

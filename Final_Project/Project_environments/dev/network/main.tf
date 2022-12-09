@@ -8,6 +8,7 @@ module "vpc-dev" {
   prefix                 = var.prefix
   default_tags           = var.default_tags
   aws_availability_zones = var.aws_availability_zones
+  grp                    = var.grp
 }
 
 
