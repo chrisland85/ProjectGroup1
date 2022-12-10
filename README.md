@@ -17,20 +17,3 @@ The environment also contains load balancers which direct traffic to all healthy
 All codes are save in github.
 Note: all the enviroment can be provisioned and running simultaneously
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-testing testing testing 
